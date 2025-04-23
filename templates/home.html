@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to StudyBuddy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .container {
+      text-align: center;
+      padding: 50px 20px;
+      flex: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Logo Styling */
+    .logo {
+      width: 400px; /* Increase size of logo */
+      height: auto;
+    }
+
+    nav {
+      font-size: 1rem;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #1f73b7;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #777;
+    }
+
+    .btn {
+      width: 250px;
+      padding: 15px;
+      margin: 15px 0;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .signup-btn {
+      background-color: #1f73b7;
+      color: white;
+    }
+
+    .signup-btn:hover {
+      background-color: #155a8a;
+    }
+
+    .login-btn {
+      background-color: #333;
+      color: white;
+    }
+
+    .login-btn:hover {
+      background-color: #555;
+    }
+
+    .footer-links {
+      margin-top: 50px;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links a {
+      color: #1f73b7;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .mission-vision {
+      margin-top: 50px;
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .mission-vision h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .mission-vision p {
+      font-size: 1.1rem;
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      overflow: auto;
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      color: #333;
+      margin: 5% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .modal-header, .modal-body {
+      text-align: center;
+    }
+
+    .modal-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #1f73b7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal-button:hover {
+      background-color: #155a8a;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .logo {
+        width: 120px; /* Adjust logo size on smaller screens */
+      }
+
+      .btn {
+        width: 200px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Logo and Navigation -->
+  <header>
+    <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+  
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Welcome to StudyBuddy</h1>
+    <p>Your intelligent study partner for efficient learning and success.</p>
+   <button onclick="window.location.href='{{ url_for('signup') }}'">Sign Up</button>
+   <button onclick="window.location.href='{{ url_for('login') }}'">Log In</button>
+
+    <!-- Mission and Vision Sections -->
+    <div class="mission-vision">
+      <h2>Mission</h2>
+      <p>Our mission is to provide students with an AI-powered assistant to support their learning and academic success, helping them study smarter and more efficiently.</p>
+      
+      <h2>Vision</h2>
+      <p>Our vision is to revolutionize education through AI, empowering students with the tools they need to succeed in their studies and in life.</p>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="footer-links">
+      <a href="#" id="contactUsBtn">Contact Us</a>
+      <a href="#" id="aboutUsBtn">About Us</a>
+    </div>
+  </div>
+
+  <!-- Modal for Contact Us -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="modal-body">
+        <button class="modal-button" onclick="showContactOption('email')">Email Us</button>
+        <button class="modal-button" onclick="showContactOption('call')">Call Us</button>
+        <div id="contactInfo" style="margin-top: 20px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for About Us -->
+  <div id="aboutUsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>About StudyBuddy</h2>
+      </div>
+      <div class="modal-body">
+        <p>StudyBuddy is an AI-powered assistant designed to help students excel in their studies. From generating quizzes to taking notes, it enhances learning with powerful tools that provide personalized support.</p>
+        <button class="modal-button" onclick="closeModal('aboutUs')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 StudyBuddy. All rights reserved.
+  </footer>
+
+  <script>
+    // Contact Us Modal Logic
+    const contactUsBtn = document.getElementById('contactUsBtn');
+    const contactModal = document.getElementById('contactModal');
+    const aboutUsBtn = document.getElementById('aboutUsBtn');
+    const aboutUsModal = document.getElementById('aboutUsModal');
+
+    contactUsBtn.onclick = function() {
+      contactModal.style.display = "block";
+    };
+
+    aboutUsBtn.onclick = function() {
+      aboutUsModal.style.display = "block";
+    };
+
+    // Display contact option (email or call)
+    function showContactOption(option) {
+      const contactInfo = document.getElementById('contactInfo');
+      if (option === 'email') {
+        contactInfo.innerHTML = "<p>Email us at: <a href='mailto:sharifafkh@gmail.com'>sharifafkh@gmail.com</a></p>";
+      } else if (option === 'call') {
+        contactInfo.innerHTML = "<p>Call us at: 0557660420</p>";
+      }
+    }
+
+    // Close modals
+    function closeModal(type) {
+      if (type === 'contact') {
+        contactModal.style.display = "none";
+      } else if (type === 'aboutUs') {
+        aboutUsModal.style.display = "none";
+      }
+    }
+
+    // Click outside modal to close
+    window.onclick = function(event) {
+      if (event.target === contactModal) {
+        contactModal.style.display = "none";
+      }
+      if (event.target === aboutUsModal) {
+        aboutUsModal.style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>

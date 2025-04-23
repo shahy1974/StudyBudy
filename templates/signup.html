@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+     }
+
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 16px;
+      font-size: 16px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #155db2;
+    }
+
+    .back-btn {
+      background-color: #e0e0e0;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    .back-btn:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password (min 8 characters)" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="field" placeholder="Field of Study (optional)" />
+
+      <button type="submit">Sign Up</button>
+      <button type="button" class="back-btn" onclick="window.location.href='home.html'">Back</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value.trim();
+
+      const usernameRegex = /^[A-Za-z0-9&*%$@!#]+$/;
+
+      if (!usernameRegex.test(username)) {
+        alert("Username can only contain letters, numbers, and symbols like &*%$@!#");
+        return;
+      }
+
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return;
+      }
+
+    users[username] = {
+    'password': generate_password_hash(password),  # Hashed
+    'email': email
+     }
+
+      // Save to localStorage
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+
+      alert("Signed up successfully!");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
